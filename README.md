@@ -1,6 +1,6 @@
 # products-api
 
-This project is a simple REST JSON API made in Java 8 using Spring Boot, PostgreSQL, JPA and Flyway. It's a CRUD API of Products. It allows you to create Products, mark them with tags and sets their prices in different currencies.
+This project is a sample REST JSON API made in Java 8 using Spring Boot, PostgreSQL, JPA and Flyway. It's a CRUD API of Products. It allows you to create Products, mark them with tags and sets their prices in different currencies.
 
 ## Getting Started
 
@@ -143,4 +143,99 @@ Try to make this request using cURL:
 ```
 echo '[{"name":"bmw"},{"name":"fiat"},{"name":"ford"},{"name":"subcompact"},{"name":"two-door"}]' | curl -d @- http://localhost:8080/tag/batchCreate --header "Content-Type:application/json"
 ```
+
+### Creating products
+
+Let's create two products and set their prices in two currencies. Also we will tag these products with some tags. To identify the **Tag** we can specify it's id or it's name and to identify the **Currency** we can specify it's id or it's symbol. For simplicity we will use name and symbol to identify them respectively.
+
+```
+localhost:8080/product  HTTP Method: POST
+
+Request Body:
+{
+  "name": "Fiesta",
+  "description": "The Ford Fiesta is a subcompact car manufactured by Ford since 1976, lasting seven generations.",
+  "tags": [
+    {
+      "name": "ford"
+    },
+    {
+      "name": "subcompact"
+    }
+  ],
+  "pricePoints": [
+    {
+      "currency": {
+        "symbol": "USD"
+      },
+      "productValue": 14000
+    },
+    {
+      "currency": {
+        "symbol": "EUR"
+      },
+      "productValue": 12500
+    }
+  ]
+}
+```
+
+
+```
+localhost:8080/product  HTTP Method: POST
+
+Request Body:
+{
+  "name": "FIAT 500",
+  "description": "The Fiat 500 is a two-door four-passenger car.",
+  "tags": [
+    {
+      "name": "fiat"
+    },
+    {
+      "name": "two-door"
+    }
+  ],
+  "pricePoints": [
+    {
+      "currency": {
+        "symbol": "USD"
+      },
+      "productValue": 16000
+    },
+    {
+      "currency": {
+        "symbol": "EUR"
+      },
+      "productValue": 14300
+    }
+  ]
+}
+```
+
+Try to make these requests using cURL:
+```
+echo '{"name":"Fiesta","description":"The Ford Fiesta is a subcompact car manufactured by Ford since 1976, lasting seven generations.","tags":[{"name":"ford"},{"name":"subcompact"}],"pricePoints":[{"currency":{"symbol":"USD"},"productValue":14000},{"currency":{"symbol":"EUR"},"productValue":12500}]}' | curl -d @- http://localhost:8080/product --header "Content-Type:application/json"
+```
+
+```
+echo '{"name":"FIAT 500","description":"The Fiat 500 is a two-door four-passenger car.","tags":[{"name":"fiat"},{"name":"two-door"}],"pricePoints":[{"currency":{"symbol":"USD"},"productValue":16000},{"currency":{"symbol":"EUR"},"productValue":14300}]}' | curl -d @- http://localhost:8080/product --header "Content-Type:application/json"
+```
+
+## Querying all the products
+
+```
+curl http://localhost:8080/product/findAll
+```
+
+## Querying an specific product by name
+
+```
+curl http://localhost:8080/product/findByName?name=Fiesta
+```
+
+## Updating a product
+
+Let's update the description of product named Fiesta. Note that for update operation we need to identify all the entities with its ids, so it's recomended to make a find before.
+
 
