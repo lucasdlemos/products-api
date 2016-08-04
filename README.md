@@ -106,7 +106,7 @@ Body:
 ]
 ```
 
-Try to make this request:
+Try to make this request using cURL:
 
 ```
 echo '[{"name":"dollar","symbol":"USD"},{"name":"euro","symbol":"EUR"},{"name":"british pound","symbol":"GBP"}]' | curl -d @- http://localhost:8080/currency/batchCreate --header "Content-Type:application/json"
@@ -138,7 +138,7 @@ Body:
 ]
 ```
 
-Try to make this request:
+Try to make this request using cURL:
 
 ```
 echo '[{"name":"bmw"},{"name":"fiat"},{"name":"ford"},{"name":"subcompact"},{"name":"two-door"}]' | curl -d @- http://localhost:8080/tag/batchCreate --header "Content-Type:application/json"
