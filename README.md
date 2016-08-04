@@ -104,7 +104,12 @@ Body:
     "symbol": "GBP"
   }
 ]
+```
 
+Try to make this request:
+
+```
+echo '[{"name":"dollar","symbol":"USD"},{"name":"euro","symbol":"EUR"},{"name":"british pound","symbol":"GBP"}]' | curl -d @- http://localhost:8080/currency/batchCreate --header "Content-Type:application/json"
 ```
 
 ### Creating tags
@@ -131,5 +136,11 @@ Body:
     "name": "two-door"
   }
 ]
+```
+
+Try to make this request:
+
+```
+echo '[{"name":"bmw"},{"name":"fiat"},{"name":"ford"},{"name":"subcompact"},{"name":"two-door"}]' | curl -d @- http://localhost:8080/tag/batchCreate --header "Content-Type:application/json"
 ```
 
