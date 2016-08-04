@@ -1,6 +1,6 @@
 # products-api
 
-This project is a simple web service made in Java 8 using Spring Boot, PostgreSQL, JPA and Flyway. It's a CRUD API of Products. It allows you to create Products, mark them with tags and sets their prices in different currencies.
+This project is a simple REST JSON API made in Java 8 using Spring Boot, PostgreSQL, JPA and Flyway. It's a CRUD API of Products. It allows you to create Products, mark them with tags and sets their prices in different currencies.
 
 ## Getting Started
 
@@ -33,5 +33,40 @@ After configuring the database, to get the API running just type:
 mvn spring-boot:run
 ```
 
+### Running the tests
 
+To build the application and run it's unit tests type:
 
+```
+mvn clean install -U
+```
+
+## Usage
+
+This section explains how to use the API describing the available calls and giving some examples of how to use them.
+
+This API have 3 main entities called **Product**, **Tag** and **Currency**. For all of them you can make CRUD operations using the following calls:
+
+### Create an entity
+```
+http://localhost:8080/{entity}  HTTP Method: POST
+
+The entity's JSON must be at the body.
+```
+
+### Update an entity
+```
+http://localhost:8080/{entity}  HTTP Method: PUT
+
+The entity, including it's id, with the changed data must be at the body
+```
+
+### Delete an entity
+```
+http://localhost:8080/{entity}/{id}  HTTP Method: DELETE
+```
+
+### Query all entities
+```
+http://localhost:8080/{entity}/findAll  HTTP Method: GET
+```
