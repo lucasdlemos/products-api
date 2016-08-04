@@ -83,3 +83,53 @@ http://localhost:8080/{entity}/findAll  HTTP Method: GET
 
 Let's see an example of how the API works. We will create some Currencies, Tags and Products.
 
+### Creating currencies
+
+```
+localhost:8080/currency/batchCreate  HTTP Method: POST
+
+Body:
+
+[
+  {
+    "name": "dollar",
+    "symbol": "USD"
+  },
+  {
+    "name": "euro",
+    "symbol": "EUR"
+  },
+  {
+    "name": "british pound",
+    "symbol": "GBP"
+  }
+]
+
+```
+
+### Creating tags
+
+```
+localhost:8080/tag/batchCreate  HTTP Method: POST
+
+Body:
+
+[
+  {
+    "name": "bmw"
+  },
+  {
+    "name": "fiat"
+  },
+  {
+    "name": "ford"
+  },
+  {
+    "name": "subcompact"
+  },
+  {
+    "name": "two-door"
+  }
+]
+```
+
