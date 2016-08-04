@@ -45,7 +45,7 @@ mvn clean install -U
 
 This section explains how to use the API describing the available calls and giving some examples of how to use them.
 
-This API have 3 main entities called **Product**, **Tag** and **Currency**. For all of them you can make CRUD operations using the following calls:
+This API has 3 main entities called **Product**, **Tag** and **Currency**. For all of them you can make CRUD operations using the following calls:
 
 ### Create an entity
 ```
@@ -54,11 +54,19 @@ http://localhost:8080/{entity}  HTTP Method: POST
 The entity's JSON must be at the body.
 ```
 
+### Create a batch of entities
+```
+http://localhost:8080/{entity}/batchCreate  HTTP Method: POST
+
+The JSON with an Array of entities must be at the body.
+```
+
+
 ### Update an entity
 ```
 http://localhost:8080/{entity}  HTTP Method: PUT
 
-The entity, including it's id, with the changed data must be at the body
+The entity's JSON, including it's id, with the changed data must be at the body
 ```
 
 ### Delete an entity
@@ -70,3 +78,8 @@ http://localhost:8080/{entity}/{id}  HTTP Method: DELETE
 ```
 http://localhost:8080/{entity}/findAll  HTTP Method: GET
 ```
+
+## Test case
+
+Let's see an example of how the API works. We will create some Currencies, Tags and Products.
+
