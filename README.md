@@ -301,8 +301,8 @@ Body:
 
 This request will return two products: *Fiesta* and *Fiat 500* as the first one has "ford" tag and the second has "two-door" tag.
 
-Try to make these requests using cURL:
+Try to make this requests using cURL:
 ```
-echo '["ford","two-door"]' | curl -d @- http://localhost:8080/product --header "Content-Type:application/json"
+echo '["ford","two-door"]' | curl -d @- http://localhost:8080/product/findByTags --header "Content-Type:application/json"
 ```
 
