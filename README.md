@@ -86,7 +86,7 @@ Let's see an example of how the API works. We will create some Currencies, Tags 
 ### Creating currencies
 
 ```
-localhost:8080/currency/batchCreate  HTTP Method: POST
+http://localhost:8080/currency/batchCreate  HTTP Method: POST
 
 Body:
 
@@ -115,7 +115,7 @@ echo '[{"name":"dollar","symbol":"USD"},{"name":"euro","symbol":"EUR"},{"name":"
 ### Creating tags
 
 ```
-localhost:8080/tag/batchCreate  HTTP Method: POST
+http://localhost:8080/tag/batchCreate  HTTP Method: POST
 
 Body:
 
@@ -149,7 +149,7 @@ echo '[{"name":"bmw"},{"name":"fiat"},{"name":"ford"},{"name":"subcompact"},{"na
 Let's create two products and set their prices in two currencies. Also we will tag these products with some tags. To identify the **Tag** we can specify it's id or it's name and to identify the **Currency** we can specify it's id or it's symbol. For simplicity we will use name and symbol to identify them respectively.
 
 ```
-localhost:8080/product  HTTP Method: POST
+http://localhost:8080/product  HTTP Method: POST
 
 Request Body:
 {
@@ -182,7 +182,7 @@ Request Body:
 
 
 ```
-localhost:8080/product  HTTP Method: POST
+http://localhost:8080/product  HTTP Method: POST
 
 Request Body:
 {
@@ -284,4 +284,25 @@ Try to make this request using cURL:
 ```
 echo '{"id":71,"name":"Fiesta","description":"Changed Description.","tags":[{"id":68,"name":"ford"},{"id":69,"name":"subcompact"}],"pricePoints":[{"id":72,"currency":{"id":63,"name":"dollar","symbol":"USD"},"productValue":14000},{"id":73,"currency":{"id":64,"name":"euro","symbol":"EUR"},"productValue":12500}]}' | curl -X PUT -d @- http://localhost:8080/product --header "Content-Type:application/json"
 ```
- 
+
+## Finding products by tags
+
+Use this call to get a list of products having at least one of specified tags. The body is a list of tag names.
+
+```
+http://localhost:8080/products/findByTags   HTTP Method: POST
+
+Body:
+[
+  "ford",
+  "two-door"
+]
+```
+
+This request will return two products: *Fiesta* and *Fiat 500* as the first one has "ford" tag and the second has "two-door" tag.
+
+Try to make these requests using cURL:
+```
+echo '["ford","two-door"]' | curl -d @- http://localhost:8080/product --header "Content-Type:application/json"
+```
+
