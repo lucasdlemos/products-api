@@ -3,9 +3,9 @@ package api.controller;
 import api.domain.Product;
 import api.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Created by lucaslemos on 8/3/16.
@@ -28,5 +28,10 @@ public class ProductController extends AbstractCrudController<Product, ProductSe
     @RequestMapping("findByDescription")
     public Product findByDescription(@RequestParam String description) {
         return service.findByDescription(description);
+    }
+
+    @RequestMapping(value = "findByTags", method = RequestMethod.POST)
+    public List<Product> findByTags(@RequestBody List<String> tagNames) {
+        return service.findByTags(tagNames);
     }
 }
