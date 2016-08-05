@@ -236,6 +236,52 @@ curl http://localhost:8080/product/findByName?name=Fiesta
 
 ## Updating a product
 
-Let's update the description of product named Fiesta. Note that for update operation we need to identify all the entities with its ids, so it's recomended to make a find before.
+Let's update the description of the product named Fiesta. Note that for update operation we need to identify all the entities with their ids, so you would need to make a find before.
 
+```
+http://localhost:8080/product  HTTP Method: PUT
 
+Request Body:
+{
+  "id": 71,
+  "name": "Fiesta",
+  "description": "Changed Description.",
+  "tags": [
+    {
+      "id": 68,
+      "name": "ford"
+    },
+    {
+      "id": 69,
+      "name": "subcompact"
+    }
+  ],
+  "pricePoints": [
+    {
+      "id": 72,
+      "currency": {
+        "id": 63,
+        "name": "dollar",
+        "symbol": "USD"
+      },
+      "productValue": 14000
+    },
+    {
+      "id": 73,
+      "currency": {
+        "id": 64,
+        "name": "euro",
+        "symbol": "EUR"
+      },
+      "productValue": 12500
+    }
+  ]
+}
+```
+
+Try to make this request using cURL:
+
+```
+echo '{"id":71,"name":"Fiesta","description":"Changed Description.","tags":[{"id":68,"name":"ford"},{"id":69,"name":"subcompact"}],"pricePoints":[{"id":72,"currency":{"id":63,"name":"dollar","symbol":"USD"},"productValue":14000},{"id":73,"currency":{"id":64,"name":"euro","symbol":"EUR"},"productValue":12500}]}' | curl -X PUT -d @- http://localhost:8080/product --header "Content-Type:application/json"
+```
+ 
